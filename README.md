@@ -20,10 +20,13 @@ clone the app
 
 Build the docker image from project root, run
 
-`docker build --tag mainstack` 
+`docker buildx build -t mainstack .` 
 
 Run docker container with env variable
 
 `docker run -p3000:3000 -e MONGODB= -e PORT= -e JWT_SECRET= mainstack`
 
 
+`docker exec -it mainstack sh` to run interactive terminal
+
+`npm run seed` to intializr db

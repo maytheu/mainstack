@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import AppError from "../config/AppError";
 import { env } from "../config/validate";
-import {  notFoundError, wrongCredentials } from "../controller/globalError";
+import { notFoundError, wrongCredentials } from "../controller/globalError";
 import Role from "../model/role.model";
 import User from "../model/user.model";
 import { ILogin, IUser, RoleType } from "../model/user.types";
@@ -20,7 +20,7 @@ class AuthService {
     if (!verifyPassword) return wrongCredentials();
 
     const payload = { user: user.id };
-    const token = await this.genToken(payload);
+    const token =  this.genToken(payload);
     return token;
   };
 
@@ -31,10 +31,6 @@ class AuthService {
     const hash = await this.encryptPassword(user.password);
 
     const roleId = await Role.findOne({ name: role ? role : "user" });
-    console.log(roleId);
-    const roles = await Role.find()
-    console.log(roles);
-    
     if (!roleId) return notFoundError("Role");
 
     const newUser = new User({ ...user, password: hash, roles: roleId._id });
@@ -57,8 +53,8 @@ class AuthService {
     return hash;
   };
 
-  private genToken = async (payload: object, time: string = "10d") => {
-    return await jwt.sign(payload, env.JWT_SECRET, { expiresIn: time });
+  private genToken =  (payload: object) => {
+    return  jwt.sign(payload, env.JWT_SECRET, { expiresIn: "10d" });
   };
 
   private comparePassword = async (password: string, hash: string) => {
