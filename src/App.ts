@@ -1,5 +1,3 @@
-import "dotenv/config";
-import { createServer } from "http";
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import router from "./route";
@@ -8,6 +6,9 @@ import rateLimit from "express-rate-limit";
 import ExpressMongoSanitize from "express-mongo-sanitize";
 import helmet from "helmet";
 import hpp from "hpp";
+import globalError from "./controller/globalError";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger";
 
 class App {
   app: Application;
@@ -31,14 +32,20 @@ class App {
     this.app.use(limiter);
     this.app.use(express.json());
     this.app.use(ExpressMongoSanitize());
-    this.app.use(hpp());
   }
 
   private route() {
     this.app.get("/", (req: Request, res: Response) =>
-      res.redirect("https://documenter.getpostman.com/view/8279131/2sA3dxDreT")
+      res.send("You're live <a href='api/v1/docs'>docs</a>")
     );
+    this.app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    this.app.get("/api/v1/docs.json", (req: Request, res: Response) => {
+      res.setHeader("Content-Type", "application/json");
+      res.send(swaggerSpec);
+    });
+
     this.app.use("/api/v1", router);
+
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       next(
         new AppError(`Ooops.. ${req.originalUrl} not found on this server`, 404)
@@ -47,7 +54,7 @@ class App {
   }
 
   private errorHandler() {
-  //  this.app.use(globalError);
+    this.app.use(globalError);
   }
 }
 

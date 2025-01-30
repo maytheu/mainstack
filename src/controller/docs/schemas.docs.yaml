@@ -1,0 +1,65 @@
+components:
+  schemas:
+    AuthenticatedError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 401
+        message: 
+          type: string
+          example: User not authenticated
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 404
+        message: 
+          type: string
+          example: Not Found
+    ValidationError:
+      type: object
+      properties:
+        status: 
+          type: number
+          example: 422
+        messgae: 
+          type: string
+    ServerError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal server error
+    AuthorizeError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 403
+        message: 
+          type: string
+          example: Unauthorized
+
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          example: product name
+        description:
+          type: string
+          example: Prduct description
+        price:
+          type: number
+          example: 1000
+        category:
+          type: string
+          example: Peoduct category
+        quantity:
+          type: number
+          example: 50
