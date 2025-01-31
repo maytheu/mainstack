@@ -1,4 +1,3 @@
-import { Application, Express, Request, Response } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 
 const options: swaggerJsdoc.Options = {
@@ -7,7 +6,7 @@ const options: swaggerJsdoc.Options = {
     info: {
       title: "Mainstack Assessment REST API Docs",
       version: "2.3.0",
-      description: "Mainstack assessment tha provide ......",
+      description: "Mainstack assessment API documentation",
     },
     components: {
       securitySchemes: {
@@ -25,8 +24,8 @@ const options: swaggerJsdoc.Options = {
     ],
   },
   apis: [
-    "./src/controller/docs/*.docs.ts",
-    "./src/controller/docs/*.docs.yaml",
+    `./controller/docs/*.docs.js`,
+    "*.docs.yaml", 
   ],
 };
 

@@ -24,7 +24,7 @@ Build the docker image from project root, run
 
 Run docker container with env variable
 
-`docker run -p3000:3000 -e MONGODB= -e PORT= -e JWT_SECRET= mainstack`
+`docker run -p 30000:30000 -e MONGODB=mongodb+srv://Laue:7p4shcriIAgkEfXI@cluster0.buxmd.mongodb.net/mainstack -e PORT=30000 -e JWT_SECRET=nnkjkdjrnknnkjnroidnddnieiendklkmkdflmlmom mainstack`
 
 
 `docker exec -it mainstack sh` to run interactive terminal
