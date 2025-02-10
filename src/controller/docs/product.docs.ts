@@ -112,13 +112,13 @@
  *            schema: 
  *              type: string
  *            description: Filter product by price and quantity e.g price>500,quantity=50
- *            example: filter=price>500,quantity=5
+ *            example: price>500,quantity=5
  *          - in: query
  *            name: sort
  *            schema:
  *              type: string
  *            description: Sort product by price, quantity and category '- =desc and + = asc' order
- *            example: sort=-price,+quantity
+ *            example: -price,+quantity
  *      responses:
  *          200: 
  *              description: Return all product
@@ -140,6 +140,9 @@
  *                                          type: array
  *                                          items:
  *                                              $ref: '#/components/schemas/Product'
+ *                                      page:
+ *                                          type: number
+ *                                          example: 1
  *          '500':
  *              description: Something bad went wrong
  *              content: 

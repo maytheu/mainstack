@@ -25,7 +25,8 @@ const options: swaggerJsdoc.Options = {
   },
   apis: [
     `./controller/docs/*.docs.js`,
-    "*.docs.yaml", 
+    "./src/controller/docs/*.docs.ts",
+    "*.docs.yaml",
   ],
 };
 

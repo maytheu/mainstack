@@ -19,8 +19,8 @@ class ProductService {
     query: { name: string; description: string; category: string },
     filter: string,
     sort: string,
-    limit=10,
-    page=1
+    limit = 10,
+    page = 1
   ) => {
     try {
       const objQuery: any = {};
@@ -59,7 +59,7 @@ class ProductService {
           this.sortRegex,
           (match: string) => `${this.operationMap[match]}-`
         );
-        //[{price:'asc'}]
+        //{price:'asc'}
         sorts
           .split(" ")
           .join()
