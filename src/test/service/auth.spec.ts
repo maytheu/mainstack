@@ -87,7 +87,7 @@ describe("Test suite for Auth service", () => {
 
       const expected = await sut(actual);
 
-      expect(expected.toString()).toBe("Error: Role cannot be found");
+      expect(expected.toString()).toBe("Error: Role not found");
     });
 
     it("Should register new user", async () => {
